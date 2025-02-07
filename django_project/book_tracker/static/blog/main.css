@@ -33,6 +33,13 @@ color: #ffffff;
 font-weight: 500;
 }
 
+#logout {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 7px;
+}
+
 .content-section {
 background: #ffffff;
 padding: 10px 20px;
@@ -54,7 +61,7 @@ text-decoration: none;
 white-space: pre-line;
 }
 
-.article-img {
+.article-img { 
 height: 65px;
 width: 65px;
 margin-right: 16px;

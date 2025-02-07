@@ -10,6 +10,8 @@ from django.views.generic import (
 )
 from django.http import HttpResponse
 from .models import Post
+from .models import Book
+from .forms import BookSearchForm
 
 User = get_user_model()
 
@@ -19,7 +21,7 @@ def home(request):
     context = {
        'posts': Post.objects.all()
     }
-    return render(request, 'blog/post_list.html', context)
+    return render(request, 'blog/home.html', context)
 
 
 def about(request):
@@ -80,3 +82,16 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView): # New
     def test_func(self):
         post = self.get_object()
         return self.request.user == post.author
+    
+
+# Search Bar
+def book_search(request):
+    form = BookSearchForm(request.GET)
+    books = []
+    
+    if form.is_valid():
+        query = form.cleaned_data['query']
+        # Search for books that match the query in the title or authors field
+        books = Book.objects.filter(title__icontains=query) | Book.objects.filter(authors__icontains=query)
+
+    return render(request, 'blog/home.html', {'form': form, 'books': books})

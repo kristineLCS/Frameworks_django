@@ -14,3 +14,17 @@ class Post(models.Model):
     
     def get_absolute_url(self): # Change here
         return reverse('post-detail', kwargs={'pk': self.pk})
+    
+# Dummy
+# book_tracker/models.py
+
+from django.db import models
+
+class Book(models.Model):
+    title = models.CharField(max_length=200)
+    authors = models.CharField(max_length=200)
+    description = models.TextField()
+    published_date = models.DateField()
+
+    def __str__(self):
+        return self.title
