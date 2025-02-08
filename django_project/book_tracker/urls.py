@@ -8,6 +8,9 @@ from .views import (
     UserPostListView
 )
 from . import views
+from .views import book_search
+from .views import admin_dashboard
+
 
 urlpatterns = [
     path('', views.home, name='blog-home'),
@@ -16,6 +19,7 @@ urlpatterns = [
     path('post/<int:pk>/update/', PostUpdateView.as_view(), name='post-update'),
     path('post/<int:pk>/delete/', PostDeleteView.as_view(), name='post-delete'),
     path('user/<str:username>', UserPostListView.as_view(), name='user-posts'),
-    path('search/', views.book_search, name='book-search'),
-    path('about/',views.about, name='blog-about'),
+    path('search/', book_search, name='book_search'), #search bar
+    path('admin-dashboard/', admin_dashboard, name='admin-dashboard'),
+    path('posts/',views.posts, name='blog-posts'),
 ]

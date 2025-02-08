@@ -1,5 +1,6 @@
 from django.shortcuts import get_object_or_404, render
 from django.contrib.auth import get_user_model
+from .models import Post
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import (
     ListView,
@@ -12,6 +13,7 @@ from django.http import HttpResponse
 from .models import Post
 from .models import Book
 from .forms import BookSearchForm
+from django.contrib.admin.views.decorators import staff_member_required
 
 User = get_user_model()
 
@@ -24,12 +26,18 @@ def home(request):
     return render(request, 'blog/home.html', context)
 
 
-def about(request):
-    return render(request,'blog/about.html', {'title': 'About'})
+def posts(request):
+    posts = Post.objects.all()  # Fetch all posts
+    return render(request, 'blog/post_list.html', {'posts': posts})  # Update templat
+
+@staff_member_required
+def admin_dashboard(request):
+    return render(request, 'admin_dashboard.html')
+
 
 class PostListView(ListView):
     model = Post
-    template_name = 'blog/post_list.html'
+    template_name = 'blog/profile.html'
     context_object_name = 'posts'
     ordering = ['-date_posted']
     paginate_by = 5 # Pagination: django will only fetch 5 posts related to users request in the first page, the rest will automatically go to the next page.
@@ -86,12 +94,13 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView): # New
 
 # Search Bar
 def book_search(request):
-    form = BookSearchForm(request.GET)
+    form = BookSearchForm(request.GET)  # Get search query from request
     books = []
-    
+
     if form.is_valid():
         query = form.cleaned_data['query']
-        # Search for books that match the query in the title or authors field
+        
+        # Search for books in the database by title or author
         books = Book.objects.filter(title__icontains=query) | Book.objects.filter(authors__icontains=query)
 
     return render(request, 'blog/home.html', {'form': form, 'books': books})
