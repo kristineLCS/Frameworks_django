@@ -28,11 +28,7 @@ def home(request):
 
 def posts(request):
     posts = Post.objects.all()  # Fetch all posts
-    return render(request, 'blog/post_list.html', {'posts': posts})  # Update templat
-
-@staff_member_required
-def admin_dashboard(request):
-    return render(request, 'admin_dashboard.html')
+    return render(request, 'blog/post_list.html', {'posts': posts})  # Update template
 
 
 class PostListView(ListView):
