@@ -4,25 +4,23 @@
 
 <h2>Search for Books</h2>
 
-<form method="GET">
-    {% csrf_token %}
-    {{ form|crispy }}
-    <button type="submit" class="btn btn-primary">Search</button>
-</form>
+<div class="searchbar">
+    <form method="GET" action="{% url 'book_search' %}">
+        <input type="text" name="query" placeholder="Search Book" required>
+        <button type="submit">Search</button>
+    </form>
+</div>
 
 {% if books %}
-    <h3>Results:</h3>
+    <h2>Search Results:</h2>
     <ul>
         {% for book in books %}
-            <li>
-                <strong>{{ book.title }}</strong> by {{ book.authors }}<br>
-                {{ book.description|slice:":200" }}...
-            </li>
+            <li>{{ book.title }} by {{ book.authors }}</li>
+        {% endfor %}
     </ul>
-
-    {% empty %}
-        <p>No books found matching your search.</p>
-    {% endfor %}
+{% else %}
+    <p>No books found.</p>
 {% endif %}
+
 
 {% endblock content %}
