@@ -1,8 +1,29 @@
 {% extends "blog/base.html" %}
+{% load static %}
 {% block content %}
-  <h2 class="heading">Search Results for "{{ query }}"</h2>
+  <div class="search-container">
+    <h2 class="heading">Search Results for "{{ request.GET.query }}"</h2>
 
-
+    {% if books %}
+        <ul>
+            {% for book in books %}
+                <li>
+                    <div class="book-result">
+                        <h3>{{ book.title }} by {{ book.author }}</h3>
+                        <p>{{ book.description }}</p>
+                        <p><strong>Published:</strong> {{ book.published_date }}</p>
+                        <button type="submit" class="add-book-button">
+                          <img class="add-book" src="{% static 'blog/images/add-btn.png' %}" alt="add button" width="35px" height="35px">
+                          Add Book
+                        </button>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No results found for "{{ request.GET.query }}"</p>
+    {% endif %}
+  </div>
 
   <!-- Pagination starting here -->
   {% if is_paginated %}
