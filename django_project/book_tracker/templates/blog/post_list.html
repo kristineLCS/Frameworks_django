@@ -2,20 +2,21 @@
 {% load crispy_forms_tags %}
 {% block content %}
 
-{% for post in posts %}
-    <article class="media content-section">
-        <div class="media-body">
-          <div class="article-metadata">
-            <a class="mr-2" href="{% url 'user-posts' post.author.username %}">
-              {{ post.author }}
-              </a>
-            <small class="text-muted">{{ post.date_posted|date:'dS, F, Y' }}</small>
-          </div>
-          <h2><a class="article-title" href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h2>
-          <p class="article-content">{{ post.content }}</p>
-        </div>
-    </article>
-  {% endfor %}
+{% for post in posts|dictsortreversed:"date_posted" %}
+  <article class="media content-section">
+    <div class="media-body">
+      <div class="article-metadata">
+        <a class="mr-2" href="{% url 'user-posts' post.author.username %}">
+          {{ post.author }}
+          </a>
+        <small class="text-muted">{{ post.date_posted|date:'dS, F, Y, h:i A' }}</small>
+      </div>
+      <h2><a class="article-title" href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h2>
+      <p class="article-content">{{ post.content|truncatechars:100 }}</p> <!--100 character limit for post preview-->
+      <a href="{% url 'post-detail' post.id %}" class="btn btn-primary">Read More</a>
+    </div>
+  </article>
+{% endfor %}
 
   {% if is_paginated %}
     <div class="post-pagination">
@@ -38,4 +39,6 @@
     {% endif %}
     </div>
   {% endif %}
+
+
 {% endblock content %}
