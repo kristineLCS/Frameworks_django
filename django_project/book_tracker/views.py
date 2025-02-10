@@ -13,7 +13,7 @@ from django.http import HttpResponse
 from .models import Post
 from .models import Book
 from .forms import BookSearchForm
-from django.contrib.admin.views.decorators import staff_member_required
+from django.db.models import Q
 
 User = get_user_model()
 
@@ -33,10 +33,15 @@ def posts(request):
 
 class PostListView(ListView):
     model = Post
-    template_name = 'blog/profile.html'
+    template_name = 'blog/post_list.html'
     context_object_name = 'posts'
-    ordering = ['-date_posted']
     paginate_by = 5 # Pagination: django will only fetch 5 posts related to users request in the first page, the rest will automatically go to the next page.
+
+    def get_queryset(self):
+        queryset = Post.objects.all().order_by('-date_posted')
+        print("Ordered Queryset:", list(queryset.values_list('title', 'date_posted')))  # Debugging
+        print("Ordered Queryset Count:", queryset.count())  # Check number of posts
+        return queryset
 
 class UserPostListView(ListView):
     model = Post
@@ -96,7 +101,9 @@ def book_search(request):
     if form.is_valid():
         query = form.cleaned_data['query']
         
-        # Search for books in the database by title or author
-        books = Book.objects.filter(title__icontains=query) | Book.objects.filter(authors__icontains=query)
+        # Search for books in the database by title or author using Q objects for OR queries
+        books = Book.objects.filter(
+            Q(title__icontains=query) | Q(author__icontains=query)
+        )
 
-    return render(request, 'blog/home.html', {'form': form, 'books': books})
+    return render(request, 'blog/search_results.html', {'form': form, 'books': books})
