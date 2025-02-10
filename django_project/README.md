@@ -10,3 +10,9 @@ Next step:
 - Create admin login to be able to update db with books
 - Allow users to save/track books
 - 
+
+To Do:
+- Set up media folder to be able to store images (i.e button imgs) for website (Unit 7)
+- Be able to add/save books
+- Be able to rate books after saving
+- Make a chat(?), inbox(?)
