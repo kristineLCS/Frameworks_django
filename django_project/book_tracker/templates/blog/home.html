@@ -7,12 +7,11 @@
         <div class="search-container">
             <h2>Search for Books</h2>
 
-            <div class="searchbar-container">
-                <form method="GET" action="{% url 'book_search' %}" class="form-container">
-                    <input type="text" class="searchbar" name="query" placeholder="Search for books..." value="{{ request.GET.query }}">
-                    <button type="submit" class="search-button">Search</button>
-                </form>
-            </div>
+            <form method="GET" action="{% url 'search_results' %}" class="form-container">
+                <input type="text" class="searchbar" name="q" placeholder="Search for books..." value="{{ request.GET.q }}">
+                <button type="submit" class="search-button">Search</button>
+            </form>
+
             {% if books %}
             <h2>Search Results:</h2>
             <ul>
