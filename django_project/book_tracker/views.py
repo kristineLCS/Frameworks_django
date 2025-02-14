@@ -1,7 +1,8 @@
 from django.shortcuts import get_object_or_404, render
 from django.contrib.auth import get_user_model
-from .models import Post
+from .models import Post, Book
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.contrib.auth.decorators import login_required
 from django.views.generic import (
     ListView,
     DetailView,
@@ -10,10 +11,11 @@ from django.views.generic import (
     DeleteView
 )
 from django.http import HttpResponse
-from .models import Post
-from .models import Book
-from .forms import BookSearchForm
+# from users.forms import BookSearchForm
 from django.db.models import Q
+from users.models import Folder
+from users.forms import FolderForm
+
 
 User = get_user_model()
 
@@ -85,7 +87,7 @@ class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView): # New class PostDeleteView created here
     model = Post
     template_name = 'blog/post_confirm_delete.html'
-    success_url = "/" # Here we are redirecting the user back to the homepage after deleting a Post successfully
+    success_url = "/" # redirecting the user back to the homepage after deleting a Post successfully
 
 
     def test_func(self):
@@ -93,17 +95,66 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView): # New
         return self.request.user == post.author
     
 
+class BaseCRUDView:
+    """
+    A universal CRUD base class to handle operations for any model.
+    """
+    model = None  # "None" - To be defined in child classes
+    form_class = None 
+    template_name = None
+    success_url = None
+    def get_queryset(self):
+        return self.model.objects.filter(user=self.request.user)  # Restrict access to user's objects
+
+    def get_object(self, queryset=None):
+        obj = super().get_object(queryset)
+        if obj.user != self.request.user:
+            raise PermissionDenied("You do not have permission to modify this item.")
+        return obj
+
+
 # Search Bar
-def book_search(request):
-    form = BookSearchForm(request.GET)  # Get search query from request
-    books = []
+# def book_search(request):
+#     form = BookSearchForm(request.GET)  # Get search query from request
+#     books = []
 
-    if form.is_valid():
-        query = form.cleaned_data['query']
+#     if form.is_valid():
+#         query = form.cleaned_data['query']
         
-        # Search for books in the database by title or author using Q objects for OR queries
-        books = Book.objects.filter(
-            Q(title__icontains=query) | Q(author__icontains=query)
-        )
+#         # Search for books in the database by title or author using Q objects for OR queries
+#         books = Book.objects.filter(
+#             Q(title__icontains=query) | Q(author__icontains=query)
+#         )
 
-    return render(request, 'blog/search_results.html', {'form': form, 'books': books})
+#     return render(request, 'blog/search_results.html', {'form': form, 'books': books})
+
+
+
+# @login_required
+# def search_results(request):
+#     query = request.GET.get('q', '')
+#     print(f"Search query: {query}")  # Debugging
+
+#     books = Book.objects.filter(title__icontains=query) if query else Book.objects.none()
+    
+#     # Fetch folders for the logged-in user
+#     folders = Folder.objects.filter(user=request.user)
+#     print("Search results view is being called!")
+
+#     print(f"User: {request.user} | Folders: {folders}")
+
+#     return render(request, 'search_results.html', {'books': books, 'folders': folders})
+
+@login_required
+def search_results(request):
+    query = request.GET.get('q', '')
+    print(f"Search query: {query}")  # Debugging
+
+    books = Book.objects.filter(Q(title__icontains=query) | Q(author__icontains=query)) if query else Book.objects.none()
+    
+    # Fetch folders for the logged-in user
+    folders = Folder.objects.filter(user=request.user)
+    print("Search results view is being called!")
+    print(f"User: {request.user} | Folders: {list(folders)}")  # Ensures folders are being retrieved
+
+    return render(request, 'blog/search_results.html', {'books': books, 'folders': folders})
