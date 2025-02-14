@@ -1,0 +1,18 @@
+{% extends "blog/base.html" %}
+{% block content %}
+<h2>Inbox</h2>
+<a href="{% url 'send_message' %}">Send a Message</a>
+<ul>
+    {% for message in inbox %}
+        <li>
+            From <strong>{{ message.sender }}
+            <a href="{% url 'message_detail' message.id %}">{{ message.subject }}</a>
+            </strong>
+            on {{ message.timestamp }}
+            <a href="{% url 'archive_inbox' message.id %}">Archive</a>
+        </li>
+    {% empty %}
+        <li>No messages</li>
+    {% endfor %}
+</ul>
+{% endblock %}

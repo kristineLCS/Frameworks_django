@@ -1,0 +1,14 @@
+{% extends "blog/base.html" %}
+{% block content %}
+<h2>Sent Messages</h2>
+<ul>
+    {% for message in messages %}
+        <li>
+            <strong>To:</strong> {{ message.receiver }} - <a href="{% url 'message_detail' message.id %}">{{ message.subject }}</a>
+            on {{ message.timestamp }}
+        </li>
+    {% empty %}
+        <li>No sent messages</li>
+    {% endfor %}
+</ul>
+{% endblock %}

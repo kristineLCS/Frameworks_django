@@ -1,0 +1,8 @@
+{% extends "blog/base.html" %}
+{% block content %}
+<h2>{{ inbox.subject }}</h2>
+<p><strong>From:</strong> {{ inbox.sender }}</p>
+<p><strong>Received on:</strong> {{ inbox.timestamp }}</p>
+<p>{{ inbox.message }}</p>
+<a href="{% url 'inbox' %}">Back to Inbox</a>
+{% endblock %}
