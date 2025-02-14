@@ -44,6 +44,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'book_tracker.apps.BookTrackerConfig',
     'users.apps.UsersConfig',
+    'inbox.apps.InboxConfig',
     'crispy_forms',
     'crispy_bootstrap5',
     'django.contrib.admin',
