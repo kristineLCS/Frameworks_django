@@ -5,21 +5,28 @@
     <h2 class="heading">Search Results for "{{ request.GET.query }}"</h2>
 
     {% if books %}
-        <ul>
-            {% for book in books %}
-                <li>
-                    <div class="book-result">
-                        <h3>{{ book.title }} by {{ book.author }}</h3>
-                        <p>{{ book.description }}</p>
-                        <p><strong>Published:</strong> {{ book.published_date }}</p>
-                        <button type="submit" class="add-book-button">
-                          <img class="add-book" src="{% static 'blog/images/add-btn.png' %}" alt="add button" width="35px" height="35px">
-                          Add Book
-                        </button>
-                    </div>
-                </li>
-            {% endfor %}
-        </ul>
+    {% for book in books %}
+      <div class="book-result">
+        <h3>{{ book.title }} by {{ book.author }}</h3>
+        <p>{{ book.description }}</p>
+        <p><strong>Published:</strong> {{ book.published_date }}</p>
+
+          <!-- Dropdown to select a folder -->
+          <form action="{% url 'add_book_to_folder' book_id=book.id %}" method="post">
+            {% csrf_token %}
+            <select name="folder_id" required>
+                <option value="">Select a Folder</option>
+                {% for folder in folders %}
+                    <option value="{{ folder.id }}">{{ folder.name }}</option>
+                {% empty %}
+                    <option disabled>No folders available</option>
+                {% endfor %}
+            </select>
+            <button type="submit">Add to Folder</button>
+        </form>
+
+      </div>
+    {% endfor %}
     {% else %}
         <p>No results found for "{{ request.GET.query }}"</p>
     {% endif %}
@@ -48,3 +55,8 @@
     </div>
   {% endif %}
 {% endblock content %}
+
+<!-- <button type="submit" class="add-book-button">
+        <img class="add-book" src="{% static 'blog/images/add-btn.png' %}" alt="add button" width="35px" height="35px">
+        Add Book
+      </button> -->
