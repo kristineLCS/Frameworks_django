@@ -1,0 +1,16 @@
+{% extends "blog/base.html" %}
+{% block content %}
+<h2>Folder: {{ folder.name }}</h2>
+
+<h3>Books in this Folder</h3>
+<ul>
+    {% for book_folder in books_in_folder %}
+        <li>{{ book_folder.book.title }} by {{ book_folder.book.author }}</li>  <!-- Display book title and author -->
+    {% empty %}
+        <li>No books in this folder yet.</li>
+    {% endfor %}
+</ul>
+
+<a href="{% url 'profile' %}">Back to Profile</a>  <!-- Link to go back to the profile -->
+
+{% endblock %}
