@@ -15,9 +15,6 @@ class Post(models.Model):
     
     def get_absolute_url(self): # Change here
         return reverse('post-detail', kwargs={'pk': self.pk})
-    
-# Dummy
-# book_tracker/models.py
 
 
 class Book(models.Model):
