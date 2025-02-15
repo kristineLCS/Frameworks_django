@@ -22,22 +22,34 @@
 
     </div>
 
-    <h2>Your Book Folders</h2>
 
-    <ul>
-        {% for folder in folders %}
-            <li><a href="{% url 'folder_details' folder.id %}">{{ folder.name }}</a></li>  <!-- Link to folder details -->
-            <a href="{% url 'folder-edit' folder.id %}">Edit</a>
-            <a href="{% url 'folder-delete' folder.id %}">Delete</a>
-        {% empty %}
-            <li>You don't have any folders yet. Create one!</li>
-        {% endfor %}
-    </ul>
+    <div class="folder-form-container">
+        <div class="folder-form">
+            <h3>Create a New Folder</h3>
+            <form method="POST">
+                {% csrf_token %}
+                {{ folder_form.as_p }}
+                <button type="submit">Create Folder</button>
+            </form>
+        </div>
+    </div>
 
-    <h3>Create a New Folder</h3>
-    <form method="POST">
-        {% csrf_token %}
-        {{ folder_form.as_p }}
-        <button type="submit">Create Folder</button>
-    </form>
+
+    <div class="folder-container">
+        <div class="folder-list">
+            <h2>Your Book Folders</h2>
+
+            <ul>
+                {% for folder in folders %}
+                    <li><a href="{% url 'folder_details' folder.id %}">{{ folder.name }}</a></li>  <!-- Link to folder details -->
+                    <a href="{% url 'folder-edit' folder.id %}">Edit</a>
+                    <a href="{% url 'folder-delete' folder.id %}">Delete</a>
+                {% empty %}
+                    <li>You don't have any folders yet. Create one!</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+
 {% endblock content %}
