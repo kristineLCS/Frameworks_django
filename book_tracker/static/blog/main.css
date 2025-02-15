@@ -104,6 +104,7 @@ font-weight: 500;
     display: flex;
     justify-content: center;
     flex-direction: row;
+    padding-bottom: 50px;
 }
 
 .searchbar{
@@ -128,7 +129,7 @@ font-weight: 500;
     display: flex;
     align-items: center;
     flex-direction: row;
-    margin-left: 30px;
+    margin-left: 130px;
 }
 
 
