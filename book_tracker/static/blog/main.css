@@ -124,17 +124,12 @@ font-weight: 500;
 }
 
 /* PROFILE */
-.folder-form-container{
-    display: flex;
-    align-items: center;
-    flex-direction: row;
-}
-
 .create-folder{
     display: flex;
     align-items: center;
     flex-direction: row;
 }
+
 
 /* ASIDE */
 aside{
