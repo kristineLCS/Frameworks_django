@@ -84,7 +84,7 @@ class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         post = self.get_object()
         return self.request.user == post.author
     
-class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView): # New class PostDeleteView created here
+class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Post
     template_name = 'blog/post_confirm_delete.html'
     success_url = "/" # redirecting the user back to the homepage after deleting a Post successfully
@@ -114,37 +114,6 @@ class BaseCRUDView:
 
 
 # Search Bar
-# def book_search(request):
-#     form = BookSearchForm(request.GET)  # Get search query from request
-#     books = []
-
-#     if form.is_valid():
-#         query = form.cleaned_data['query']
-        
-#         # Search for books in the database by title or author using Q objects for OR queries
-#         books = Book.objects.filter(
-#             Q(title__icontains=query) | Q(author__icontains=query)
-#         )
-
-#     return render(request, 'blog/search_results.html', {'form': form, 'books': books})
-
-
-
-# @login_required
-# def search_results(request):
-#     query = request.GET.get('q', '')
-#     print(f"Search query: {query}")  # Debugging
-
-#     books = Book.objects.filter(title__icontains=query) if query else Book.objects.none()
-    
-#     # Fetch folders for the logged-in user
-#     folders = Folder.objects.filter(user=request.user)
-#     print("Search results view is being called!")
-
-#     print(f"User: {request.user} | Folders: {folders}")
-
-#     return render(request, 'search_results.html', {'books': books, 'folders': folders})
-
 @login_required
 def search_results(request):
     query = request.GET.get('q', '')
