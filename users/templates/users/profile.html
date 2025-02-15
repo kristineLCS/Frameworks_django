@@ -26,10 +26,10 @@
     <div class="folder-form-container">
         <div class="folder-form">
             <h3>Create a New Folder</h3>
-            <form method="POST" class="create-folder">
+            <form method="POST" >
                 {% csrf_token %}
                 {{ folder_form.as_p }}
-                <button type="submit">Create Folder</button>
+                <button type="submit" class="create-folder-button">Create Folder</button>
             </form>
         </div>
     </div>
