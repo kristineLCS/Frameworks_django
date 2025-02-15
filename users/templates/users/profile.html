@@ -25,7 +25,7 @@
 
     <div class="folder-form-container">
         <div class="folder-form">
-            <h3>Create a New Folder</h3>
+            <h4 class="create-folder-title">Create a New Folder</h4>
             <form method="POST" >
                 {% csrf_token %}
                 {{ folder_form.as_p }}
@@ -36,18 +36,22 @@
 
 
     <div class="folder-container">
-        <div class="folder-list">
-            <h2>Your Book Folders</h2>
+        <h2 class="folder-title">Your Book Folders</h2>
 
-            <ul>
-                {% for folder in folders %}
-                    <li><a href="{% url 'folder_details' folder.id %}">{{ folder.name }}</a></li>  <!-- Link to folder details -->
-                    <a href="{% url 'folder-edit' folder.id %}">Edit</a>
-                    <a href="{% url 'folder-delete' folder.id %}">Delete</a>
-                {% empty %}
-                    <li>You don't have any folders yet. Create one!</li>
-                {% endfor %}
-            </ul>
+        <div class="folder-list">
+            <div class="folder-style">
+                    {% for folder in folders %}
+                    <div class="list-style">
+                        <a href="{% url 'folder_details' folder.id %}"  class="folder-name">{{ folder.name }}</a>
+                        <div class="edit-delete">
+                            <a href="{% url 'folder-edit' folder.id %}" class="edit-folder">Edit</a>
+                            <a href="{% url 'folder-delete' folder.id %}" class="delete-folder">Delete</a>
+                        </div>
+                    {% empty %}
+                        <p>You don't have any folders yet. Create one!</p>
+                    </div>
+                    {% endfor %}
+            </div>
         </div>
     </div>
 

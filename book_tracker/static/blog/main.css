@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Upright:wght@300;400;500;600;700&family=EB+Garamond:ital,wght@0,400..800;1,400..800&display=swap');
+
 html, body {
     background: #fafafa;
     color: #333333;
@@ -16,13 +18,20 @@ body{
     flex-direction: column;
 }
 
+a:hover{
+    color: #428bca;
+
+}
+
 h1,
 h2,
 h3,
 h4,
 h5,
-h6 {
-color: #444444;
+h6,
+p {
+    font-family: 'cormorant upright', 'times new roman', 'helvetica';
+    color: #444444;
 }
 
 ul {
@@ -34,27 +43,38 @@ background-color: #6e4f30;
 }
 
 .site-header{
+    font-family: 'cormorant upright', 'times new roman', 'helvetica';
+    font-size: 20px;
+    font-weight: bold;
     background-color: #cc853d;
 
 }
 
 .navbar-nav .nav-link {
-color: #cbd5db;
+    font-family: 'cormorant upright', 'times new roman', 'helvetica';
+    color: #cbd5db;
 }
 
 .site-header .navbar-nav .nav-link:hover {
-color: #ffffff;
+    color: #ffffff;
 }
 
 .site-header .navbar-nav .nav-link.active {
-font-weight: 500;
+    font-weight: 500;
 }
 
 #logout {
+    font-family: 'cormorant upright', 'times new roman', 'helvetica';
+    font-size: 20px;
+    font-weight: bold;
     display: flex;
     justify-content: center;
     align-items: center;
     margin-top: 7px;
+}
+
+.navbar-brand{
+    color: rgb(255, 242, 95);
 }
 
 
@@ -69,6 +89,11 @@ font-weight: 500;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+}
+
+.booked-busy{
+    font-family: 'cormorant upright', 'times new roman', 'helvetica';
+
 }
 
 
@@ -100,17 +125,6 @@ font-weight: 500;
     flex-direction: row;
 }
 
-.form-container{
-    display: flex;
-    justify-content: center;
-    flex-direction: row;
-}
-
-.folder-form-container{
-    margin-top: 50px;
-    margin-bottom: 50px;
-}
-
 .searchbar{
     width: 80%;
     margin-right: 20px;
@@ -129,13 +143,105 @@ font-weight: 500;
 }
 
 /* PROFILE */
-.create-folder-button{
-    display: flex;
-    align-items: center;
-    flex-direction: row;
-    margin-left: 130px;
+.folder-title{
+    font-family: 'cormorant upright', 'times new roman', 'helvetica';
+    font-style: italic;
+    font-size: 40px;
+    font-weight: bold;
+    color: #4f2801;
 }
 
+.create-folder-title{
+    font-family: 'cormorant upright', 'times new roman', 'helvetica';
+    font-style: italic;
+    font-size: 25px;
+    font-weight: bold;
+    color: #4f2801;
+}
+
+.create-folder-button{
+    margin-left: 130px;
+    border: 5px;
+    text-decoration: none;
+}
+
+.form-container{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+}
+
+.list-style{
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.edit-delete{
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 35px;
+}
+
+.edit-folder{
+    border: 1px solid black;
+    border-radius: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    display: flex;
+    flex-direction: row;
+    color: black;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 30px;
+
+}
+
+.delete-folder{
+    border: 1px solid black;
+    border-radius: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    display: flex;
+    flex-direction: row;
+    color: black;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 30px;
+
+}
+
+.folder-list{
+    display: flex;
+    flex-direction: column;
+    margin-top: 30px;
+}
+
+.folder-name{
+    font-size: 25px;
+    font-family: 'cormorant upright', 'times new roman', 'helvetica';
+    font-weight: 700;
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+
+}
+
+.folder-form-container{
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+
+/* INBOX */
+.inbox-title{
+    font-weight: bold;
+    font-size: 50px;
+}
 
 /* ASIDE */
 aside{

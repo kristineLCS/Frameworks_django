@@ -1,7 +1,7 @@
 {% extends "blog/base.html" %}
 {% block content %}
-<h2>Inbox</h2>
-<a href="{% url 'send_message' %}">Send a Message</a>
+<h2 class="inbox-title">Inbox</h2>
+<a href="{% url 'send_message' %}" class="send-message">Send a Message</a>
 <ul>
     {% for message in inbox %}
         <li>
