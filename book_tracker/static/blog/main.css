@@ -130,6 +130,12 @@ font-weight: 500;
     flex-direction: row;
 }
 
+.create-folder{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+}
+
 /* ASIDE */
 aside{
     display: flex;
