@@ -14,5 +14,7 @@ Next step:
 To Do:
 - Set up media folder to be able to store images (i.e button imgs) for website (Unit 7)
 - Be able to add/save books
-- Be able to rate books after saving
+- Be able to rate books after saving (javascript)
 - Make a chat(?), inbox(?)
+- Fix delete function in post page
+- Sidebar when screens are smaller (javascript)
