@@ -243,6 +243,26 @@ background-color: #6e4f30;
     font-size: 50px;
 }
 
+.send-message{
+    font-family: 'cormorant upright', 'times new roman', 'helvetica';
+    font-size: 20px;
+    color: black;
+    text-decoration: none;
+    border: 1px solid black;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.send-message:hover{
+    color: #000000;
+    background-color: #b0d8fb;
+
+}
+
+.message-detail{
+    font-size: 20px;
+}
+
 /* ASIDE */
 aside{
     display: flex;
