@@ -18,3 +18,4 @@ To Do:
 - Make a chat(?), inbox(?)
 - Fix delete function in post page
 - Sidebar when screens are smaller (javascript)
+- Create archive html file
