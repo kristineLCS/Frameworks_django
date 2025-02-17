@@ -45,7 +45,7 @@
                     {% for announcement in announcements %}
                         <li class="list-group-item list-group-item-light">
                             <strong>{{ announcement.title }}</strong> <br>
-                            <small class="text-muted">Posted by {{ announcement.author.username }} on {{ announcement.created_at|date:"M d, Y" }}</small>
+                            <small class="text-muted">Posted on {{ announcement.created_at|date:"M d, Y" }}</small>
                             <p>{{ announcement.content }}</p>
 
                             {% if user.is_staff %}

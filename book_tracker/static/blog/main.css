@@ -221,6 +221,24 @@ background-color: #6e4f30;
     margin-left: 50px;
 }
 
+/* ANNOUNCEMENT BOARD */
+.btn-warning{
+    background-color: rgba(0, 0, 0, 0);
+    border: 1px solid #000000;
+    border-radius: 5px;
+    text-decoration: none;
+    color: #000000;
+}
+
+.btn-danger{
+    background-color: rgba(0, 0, 0, 0);
+    border: 1px solid #cb0000;
+    border-radius: 5px;
+    text-decoration: none;
+    color: #000000;
+
+}
+
 /* PROFILE */
 .folder-title{
     font-family: 'cormorant upright', 'times new roman', 'helvetica';
