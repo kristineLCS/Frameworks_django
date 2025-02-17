@@ -36,6 +36,10 @@ def send_message(request):
     
     return render(request, 'message/send_message.html', {'form': form})
 
+@login_required
+def archived_messages(request):
+    archived_msgs = Inbox.objects.filter(receiver=request.user, is_archived=True)
+    return render(request, 'message/archived_messages.html', {'archived_msgs': archived_msgs})
 
 
 @login_required
@@ -43,4 +47,4 @@ def archive_inbox(request, inbox_id):
     inbox = get_object_or_404(Inbox, id=inbox_id, receiver=request.user)
     inbox.is_archived = True
     inbox.save()
-    return redirect('inbox')
+    return redirect('archived_messages')

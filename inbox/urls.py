@@ -7,4 +7,6 @@ urlpatterns = [
     path('message/<int:inbox_id>/', views.message_detail, name='message_detail'),
     path('send/', views.send_message, name='send_message'),
     path('archive/<int:inbox_id>/', views.archive_inbox, name='archive_inbox'),
+    path('inbox/archived/', views.archived_messages, name='archived_messages'),
+
 ]
