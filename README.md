@@ -1,26 +1,13 @@
-Project: Book Tracker (Booked)
-- Use API to allow users to search for books and view details
-- Allows users to track their progress and set reading goals
-- 
+DJANGO Project:
 
-- About.html -> page where users can post their thoughts and opinions on books they've read (aka post list)
-- Profile stays as profile and updating details
+Booked & Busy is a book tracking app that user can use to track the bookso they have read. I used google Books API to collect books for my database hence allowing users to search for books. Users can create folders in their profile page and add books to their folders. They can name their folders any names they want and delete it anytime they want. In the Home page, there is an announcement board that displays new announcements. Only admins have access to posting new announcements. I also implemented a post page where users can post reviews of any books, or just post anything book related. An aditional function is the inbox function where users can message one another. 
 
-Next step:
-- Create admin login to be able to update db with books
-- Allow users to save/track books
-- 
+Admin username: Kristine
+Admin password: djangoproject
 
-To Do:
-- Set up media folder to be able to store images (i.e button imgs) for website (Unit 7)
-- Be able to add/save books - DONE
-- Be able to rate books after saving (javascript)
-- Make a chat(?), inbox(?) - DONE
-- Fix delete function in post page - DONE
-- Sidebar when screens are smaller (javascript) - DONE
-- Create archive html file - DONE
-- Create announcement board slideshow i.e newly released books, 
-- Fix delete announcement confirmation on announcement board - DONE
-- Add genre to display of book informations - ??
-- Check if password reset works
-- allow users to remove books from folders
+Github repo:
+https://github.com/kristineLCS/Frameworks_django.git
+
+Booked & Busy URL:
+https://booked-and-busy.onrender.com
+
