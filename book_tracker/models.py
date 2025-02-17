@@ -17,12 +17,20 @@ class Post(models.Model):
         return reverse('post-detail', kwargs={'pk': self.pk})
 
 
+class Genre(models.Model):
+    name = models.CharField(max_length=100, unique=True)
+
+    def __str__(self):
+        return self.name
+
 class Book(models.Model):
     title = models.CharField(max_length=255)
     author = models.CharField(max_length=255, null=True, blank=True)
     published_date = models.DateField(null=True, blank=True)
     google_books_id = models.CharField(max_length=50, unique=True, null=True, blank=True)
     description = models.TextField(null=True, blank=True)
+    genres = models.ManyToManyField(Genre, related_name="books")  # Added genre field
+
 
     def save(self, *args, **kwargs):
         if self.google_books_id == "":
@@ -31,5 +39,14 @@ class Book(models.Model):
 
     def __str__(self):
         return self.title
+    
 
+class Announcement(models.Model):
+    title = models.CharField(max_length=255)
+    content = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.title
 

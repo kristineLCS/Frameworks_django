@@ -1,7 +1,7 @@
 from django.contrib import admin
 import requests
 from django import forms
-from .models import Post, Book
+from .models import Post, Book, Genre, Announcement
 from datetime import datetime
 from dotenv import load_dotenv
 import os
@@ -85,3 +85,8 @@ class BookAdmin(admin.ModelAdmin):
     list_display = ('title', 'author', 'published_date')  # Show these in admin
 
 admin.site.register(Book, BookAdmin)
+admin.site.register(Announcement)
+
+
+# admin.site.register(Genre)  # Register Genre model
+
