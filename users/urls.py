@@ -1,13 +1,13 @@
 from django.urls import path
 from . import views
 from .views import (
-    add_book_to_folder, 
-    create_folder,
     FolderListView, 
     FolderCreateView, 
     FolderUpdateView, 
     FolderDeleteView
 )
+
+from .views import add_book_to_folder, create_folder 
 
 urlpatterns = [
     path('folder/<int:folder_id>/', views.folder_details, name='folder_details'),  # Folder details page
