@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Upright:wght@300;400;500;600;700&family=EB+Garamond:ital,wght@0,400..800;1,400..800&display=swap');
 
+
+
 html, body {
     background: #fafafa;
     color: #333333;
@@ -50,9 +52,63 @@ background-color: #6e4f30;
 
 }
 
+/* Sidebar Styles for Small Screens */
+/* Default navbar styles */
+.navbar {
+    transition: all 0.3s ease-in-out;
+}
+
+/* Sidebar Styles for Small Screens */
+@media (max-width: 768px) {
+    .navbar-collapse {
+        position: fixed;
+        top: 0;
+        right: -250px;
+        width: 250px;
+        height: 100vh;
+        background-color: #343a40;
+        padding-top: 20px;
+        transition: 0.3s ease-in-out;
+        z-index: 1000;
+    }
+
+    .navbar-collapse.show {
+        right: 0; /* Slide in when opened */
+    }
+
+    .navbar-nav {
+        display: flex;
+        flex-direction: column;
+        text-align: left;
+        padding-left: 20px;
+    }
+
+    .navbar-toggler {
+        position: absolute;
+        font-size: 15px;
+        right: 10px;
+        top: 10px;
+    }
+
+    .close-btn {
+        position: absolute;
+        top: 10px;
+        right: 20px;
+        font-size: 30px;
+        cursor: pointer;
+        color: white;
+    }
+
+    .close-btn:hover {
+        color: red;
+    }
+}
+
 .navbar-nav .nav-link {
     font-family: 'cormorant upright', 'times new roman', 'helvetica';
     color: #cbd5db;
+    font-size: 18px;
+
 }
 
 .site-header .navbar-nav .nav-link:hover {
@@ -63,25 +119,18 @@ background-color: #6e4f30;
     font-weight: 500;
 }
 
-#logout {
-    font-family: 'cormorant upright', 'times new roman', 'helvetica';
-    font-size: 20px;
-    font-weight: bold;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 7px;
-}
-
 .navbar-brand{
     color: rgb(255, 242, 95);
 }
+
+
 
 
 /* BASE.HTML */
 .main-container{
     margin-top: 80px;
     margin-bottom: 120px;
+    width: 100%;
 }
 .row{
     margin-right: 0px;
@@ -94,6 +143,16 @@ background-color: #6e4f30;
 .booked-busy{
     font-family: 'cormorant upright', 'times new roman', 'helvetica';
 
+}
+
+#logout {
+    font-family: 'cormorant upright', 'times new roman', 'helvetica';
+    font-size: 20px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 7px;
 }
 
 
@@ -110,13 +169,12 @@ background-color: #6e4f30;
     width: 100%;
 }
 
-.book-result{
-    padding-bottom: 50px;
+.form-container{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
 }
 
-.heading{
-    padding-bottom: 50px;
-}
 
 .searchbar-container{
     display: flex;
@@ -142,6 +200,27 @@ background-color: #6e4f30;
     align-self: center;
 }
 
+.book-result{
+    padding-bottom: 50px;
+}
+
+.heading{
+    padding-bottom: 50px;
+}
+
+/* POST PAGE */
+.content-section{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-left: 50px;
+
+}
+
+.post-detail{
+    margin-left: 50px;
+}
+
 /* PROFILE */
 .folder-title{
     font-family: 'cormorant upright', 'times new roman', 'helvetica';
@@ -163,12 +242,6 @@ background-color: #6e4f30;
     margin-left: 130px;
     border: 5px;
     text-decoration: none;
-}
-
-.form-container{
-    display: flex;
-    justify-content: center;
-    flex-direction: row;
 }
 
 .list-style{
@@ -239,8 +312,11 @@ background-color: #6e4f30;
 
 /* INBOX */
 .inbox-title{
+    display: flex;
+    justify-content: center;
     font-weight: bold;
     font-size: 50px;
+    margin-bottom: 50px;
 }
 
 .send-message{
@@ -251,6 +327,27 @@ background-color: #6e4f30;
     border: 1px solid black;
     padding: 5px 10px;
     border-radius: 5px;
+    margin-left: 50px;
+}
+
+.archive-message{
+    font-size: 12px;
+}
+
+.archive-button{
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 55px;
+    color: #000000;
+}
+
+.material-icons {
+    font-size: 30px;
+    color: #333;
+}
+
+.sender-name{
+    font-size: 18px;
 }
 
 .send-message:hover{
@@ -259,9 +356,67 @@ background-color: #6e4f30;
 
 }
 
+.time-stamp{
+    font-size: 18px;
+
+}
+
 .message-detail{
     font-size: 20px;
 }
+
+.inbox-container{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 50px;
+}
+
+.message-list{
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+}
+
+.dot{
+    margin-top: 10px;
+    height: 10px;
+    width: 10px;
+    background-color: #6caeff;
+    border-radius: 50%;
+}
+
+/* MESSAGE DETAILS */
+.message-detail{
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    margin-top: 50px;
+    margin-left: 60px;
+}
+
+.back-to-inbox{
+    font-size: 15px;
+}
+
+/* SEND MESSAGE */
+.send-a-message{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 60px;
+    border: none;
+}
+
+.send{
+    border: 1px solid #000000;
+    border-radius: 5px;
+    background-color: #ffffff;
+    font-size: 14px;
+}
+
 
 /* ASIDE */
 aside{
@@ -364,3 +519,21 @@ margin-bottom: 16px;
 font-size: 2.5rem;
 }
 
+
+/* LOGIN PAGE */
+.login-page{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 30px;
+}
+
+/* LOGOUT PAGE */
+.logout-page{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 30px;
+}
