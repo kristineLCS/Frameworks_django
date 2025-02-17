@@ -1,0 +1,13 @@
+{% extends "blog/base.html" %}
+
+{% block content %}
+<div class="container">
+    <h2>Post an Announcement</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Post Announcement</button>
+    </form>
+    <a href="{% url 'blog-home' %}" class="btn btn-secondary mt-2">Back to Home</a>
+</div>
+{% endblock %}

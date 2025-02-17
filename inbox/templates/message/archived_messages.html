@@ -1,0 +1,31 @@
+{% extends "blog/base.html" %}
+
+{% block content %}
+    <h2>Archived Messages</h2>
+    {% if archived_msgs %}
+        <ul>
+            {% for msg in archived_msgs %}
+                <li>
+                    <strong>From:</strong> {{ msg.sender }} <br>
+                    <strong>Subject:</strong> {{ msg.subject }} <br>
+                    <strong>Message:</strong> {{ msg.message }} <br>
+                    <strong>Received:</strong> {{ msg.timestamp }} <br>
+                    <a href="{% url 'message_detail' msg.id %}">View</a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No archived messages.</p>
+    {% endif %}
+{% endblock %}
+
+<!-- <div class="message-list">
+    <div class="message-detail">
+        <strong><a href="{% url 'message_detail' message.id %}">{{ message.subject }}</a></strong>
+    </div>
+    <div class="inbox-details">
+        <p>From <strong>{{ message.sender }}</strong></p>
+        <p>on {{ message.timestamp }}</p>
+    </div>
+    <a href="{% url 'archive_inbox' message.id %}">Archive</a>
+</div> -->
