@@ -13,9 +13,12 @@ Next step:
 
 To Do:
 - Set up media folder to be able to store images (i.e button imgs) for website (Unit 7)
-- Be able to add/save books
+- Be able to add/save books - DONE
 - Be able to rate books after saving (javascript)
-- Make a chat(?), inbox(?)
-- Fix delete function in post page
-- Sidebar when screens are smaller (javascript)
-- Create archive html file
+- Make a chat(?), inbox(?) - DONE
+- Fix delete function in post page - DONE
+- Sidebar when screens are smaller (javascript) - DONE
+- Create archive html file - DONE
+- Create announcement board slideshow i.e newly released books, 
+- Fix delete announcement confirmation on announcement board - DONE
+- Add genre to display of book informations - ??
