@@ -22,3 +22,4 @@ To Do:
 - Create announcement board slideshow i.e newly released books, 
 - Fix delete announcement confirmation on announcement board - DONE
 - Add genre to display of book informations - ??
+- Check if password reset works

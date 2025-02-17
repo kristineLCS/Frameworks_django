@@ -239,6 +239,13 @@ background-color: #6e4f30;
 
 }
 
+.post-announcement{
+    display: flex;
+    justify-items: flex-end;
+    align-items: center;
+    border: 1px solid #0000;
+}
+
 /* PROFILE */
 .folder-title{
     font-family: 'cormorant upright', 'times new roman', 'helvetica';
