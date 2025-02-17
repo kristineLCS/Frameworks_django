@@ -23,3 +23,4 @@ To Do:
 - Fix delete announcement confirmation on announcement board - DONE
 - Add genre to display of book informations - ??
 - Check if password reset works
+- allow users to remove books from folders

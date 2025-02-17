@@ -1,31 +1,34 @@
 {% extends "blog/base.html" %}
 
 {% block content %}
-    <h2>Archived Messages</h2>
-    {% if archived_msgs %}
-        <ul>
-            {% for msg in archived_msgs %}
-                <li>
-                    <strong>From:</strong> {{ msg.sender }} <br>
-                    <strong>Subject:</strong> {{ msg.subject }} <br>
-                    <strong>Message:</strong> {{ msg.message }} <br>
-                    <strong>Received:</strong> {{ msg.timestamp }} <br>
-                    <a href="{% url 'message_detail' msg.id %}">View</a>
-                </li>
-            {% endfor %}
-        </ul>
-    {% else %}
-        <p>No archived messages.</p>
-    {% endif %}
+    <div class="archive-page-container">
+        <div class="archive-page">
+            <h2 class="archive-title">Archived Messages</h2>
+            <div class="archive-list">
+                {% if archived_msgs %}
+                        {% for msg in archived_msgs %}
+                            <span class="dot"></span>
+                            <p class="sender-name">From <strong>{{ msg.sender }}</strong></p>
+
+                            <strong><a href="{% url 'message_detail' msg.id %}">{{ msg.subject }}</a></strong>
+                            <p class="time-stamp">on {{ msg.timestamp }}</p>
+                        {% endfor %}
+                {% else %}
+                    <p>No archived messages.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
 {% endblock %}
 
-<!-- <div class="message-list">
-    <div class="message-detail">
-        <strong><a href="{% url 'message_detail' message.id %}">{{ message.subject }}</a></strong>
-    </div>
-    <div class="inbox-details">
-        <p>From <strong>{{ message.sender }}</strong></p>
-        <p>on {{ message.timestamp }}</p>
-    </div>
-    <a href="{% url 'archive_inbox' message.id %}">Archive</a>
-</div> -->
+<!-- <strong>From:</strong> {{ msg.sender }} <br>
+<strong>Subject:</strong> {{ msg.subject }} <br>
+<strong>Message:</strong> {{ msg.message }} <br>
+<strong>Received:</strong> {{ msg.timestamp }} <br>
+<a href="{% url 'message_detail' msg.id %}">View</a>
+
+<span class="dot"></span>
+<p class="sender-name">From <strong>{{ message.sender }}</strong></p>
+
+<strong><a href="{% url 'message_detail' message.id %}">{{ message.subject }}</a></strong>
+<p class="time-stamp">on {{ message.timestamp }}</p> -->

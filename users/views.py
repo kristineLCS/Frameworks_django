@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from .forms import UserRegisterForm, UserUpdateForm
+from django.contrib.auth import login
 from django.contrib import messages
 from .models import Folder, BookFolder
 from book_tracker.models import Book
@@ -20,10 +21,10 @@ def register(request):
     if request.method == 'POST':
         form = UserRegisterForm(request.POST)
         if form.is_valid():
-            form.save()
-            username = form.cleaned_data.get('username')
-            messages.success(request, f'The account {username} was created successfully, now you can login.')
-            return redirect('book_tracker-home')
+            user = form.save()
+            login(request, user)  # Log the user in immediately after registration
+            messages.success(request, f'The account {user.username} was created successfully!')
+            return redirect('profile')  # Redirect to profile after login
     else:
         form = UserRegisterForm()
     return render(request, 'users/register.html', {'form': form})
@@ -157,3 +158,17 @@ class FolderDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     def get_queryset(self):
         print("FolderDeleteView is being called!")  # Debugging
         return Folder.objects.filter(user=self.request.user)
+    
+
+@login_required
+def remove_book_from_folder(request, folder_id, book_id):
+    folder = get_object_or_404(Folder, id=folder_id, user=request.user)
+    book = get_object_or_404(Book, id=book_id)
+
+    if book in folder.books.all():
+        folder.books.remove(book)
+        messages.success(request, "Book removed from folder successfully.")
+    else:
+        messages.error(request, "Book not found in folder.")
+
+    return redirect("folder-detail", folder_id=folder.id)

@@ -23,7 +23,6 @@ urlpatterns = [
     path('post/<int:pk>/delete/', PostDeleteView.as_view(), name='post-delete'),
     path('user/<str:username>', UserPostListView.as_view(), name='user-posts'),
     path('search/', views.search_results, name='search_results'),  # search bar
-    # path('genre/<int:genre_id>/', views.genre_books, name='genre_books'),
     path('posts/',views.posts, name='blog-posts'),
     path('inbox/', include('inbox.urls')),
     path('users/', include('users.urls')),  # Include user-related URLs

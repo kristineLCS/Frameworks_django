@@ -1,35 +1,33 @@
 {% extends "blog/base.html" %}
 {% block content %}
-<h2 class="inbox-title">Inbox</h2>
-<a href="{% url 'send_message' %}" class="send-message">Send a Message</a>
+    <div class="inbox-page-container">
+        <div class="inbox-heading">
+            <h2 class="inbox-title">Inbox</h2>
 
-<div class="archive">
-    <a class="archive-button" href="{% url 'archived_messages' %}">
-        <i class="material-icons">archive</i>
-    </a>
-</div>
+            <div class="archive">
+                <a href="{% url 'send_message' %}" class="send-message">Send a Message</a>
 
-<div class="inbox-container">
-    {% for message in inbox %}
-        <div class="message-list">
-            <!-- <div class="message-detail"> -->
-                <span class="dot"></span>
-                <p class="sender-name">From <strong>{{ message.sender }}</strong></p>
-            <!-- </div> -->
-            <!-- <div class="inbox-details"> -->
-                <strong><a href="{% url 'message_detail' message.id %}">{{ message.subject }}</a></strong>
-                <p class="time-stamp">on {{ message.timestamp }}</p>
-            <!-- </div> -->
-            <a href="{% url 'archive_inbox' message.id %}" class="archive-message">Archive</a>
+                <a class="archive-button" href="{% url 'archived_messages' %}">
+                    <i class="material-icons">archive</i>
+                </a>
+            </div>
         </div>
-    {% empty %}
-        No messages
-    {% endfor %}
-</div>
+
+        <div class="inbox-container">
+            {% for message in inbox %}
+                <div class="message-list">
+
+                    <span class="dot"></span>
+                    <p class="sender-name">From <strong>{{ message.sender }}</strong></p>
+
+                    <strong><a href="{% url 'message_detail' message.id %}">{{ message.subject }}</a></strong>
+                    <p class="time-stamp">on {{ message.timestamp }}</p>
+
+                    <a href="{% url 'archive_inbox' message.id %}" class="archive-message">Archive</a>
+                </div>
+            {% empty %}
+                No messages
+            {% endfor %}
+        </div>
+    </div>
 {% endblock %}
-<!-- 
-<strong>From:</strong> {{ msg.sender }} <br>
-<strong>Subject:</strong> {{ msg.subject }} <br>
-<strong>Message:</strong> {{ msg.message }} <br>
-<strong>Received:</strong> {{ msg.timestamp }} <br>
-<a href="{% url 'message_detail' msg.id %}">View</a> -->

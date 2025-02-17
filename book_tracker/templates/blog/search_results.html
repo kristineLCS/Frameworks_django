@@ -8,13 +8,6 @@
     {% for book in books %}
       <div class="book-result">
         <h3>{{ book.title }} by {{ book.author }}</h3>
-        <!-- <p><strong>Genres:</strong> -->
-          <!-- {% for genre in book.genres.all %}
-              <a href="{% url 'genre_books' genre.id %}" class="badge badge-primary">{{ genre.name }}</a>{% if not forloop.last %}, {% endif %}
-          {% empty %}
-              No genres available
-          {% endfor %} -->
-          <!-- </p> -->
         <p>{{ book.description }}</p>
         <p><strong>Published:</strong> {{ book.published_date }}</p>
 
@@ -63,7 +56,3 @@
   {% endif %}
 {% endblock content %}
 
-<!-- <button type="submit" class="add-book-button">
-        <img class="add-book" src="{% static 'blog/images/add-btn.png' %}" alt="add button" width="35px" height="35px">
-        Add Book
-      </button> -->

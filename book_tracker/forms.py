@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
-from .models import Genre, Announcement
+from .models import Announcement
 
 
 class UserRegisterForm(UserCreationForm):
@@ -27,12 +27,7 @@ class BookSearchForm(forms.Form):
         max_length=100, 
         widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Search Book'})
     )
-    genre = forms.ModelChoiceField(
-        queryset=Genre.objects.all(),
-        required=False,
-        empty_label="All Genres",
-        widget=forms.Select(attrs={'class': 'form-control'})
-    )
+
 
 
 class AnnouncementForm(forms.ModelForm):

@@ -1,7 +1,7 @@
 from django.contrib import admin
 import requests
 from django import forms
-from .models import Post, Book, Genre, Announcement
+from .models import Post, Book, Announcement
 from datetime import datetime
 from dotenv import load_dotenv
 import os
@@ -63,7 +63,7 @@ class BookAdminForm(forms.ModelForm):
             published_date_str = self.auto_fill_data.get('published_date', "")
             if published_date_str:
                 try:
-                    # If the date is only a year (YYYY), append "-01-01" to make it YYYY-MM-DD
+                    # REMINDER - If the date is only a year (YYYY), append "-01-01" to make it YYYY-MM-DD
                     if len(published_date_str) == 4:
                         published_date_str += "-01-01"
                     # If the date is YYYY-MM, append "-01" to make it YYYY-MM-DD
@@ -86,7 +86,4 @@ class BookAdmin(admin.ModelAdmin):
 
 admin.site.register(Book, BookAdmin)
 admin.site.register(Announcement)
-
-
-# admin.site.register(Genre)  # Register Genre model
 

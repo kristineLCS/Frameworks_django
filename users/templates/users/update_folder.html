@@ -1,10 +1,14 @@
 {% extends "blog/base.html" %}
 {% block content %}
-  <h2>Edit Folder</h2>
-  <form method="POST">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Save Changes</button>
-  </form>
-  <a href="{% url 'profile' %}">Cancel</a>
+  <div class="rename-folder">
+      <h2>Edit Folder</h2>
+      <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div class="rename-folder-buttons">
+          <a href="{% url 'profile' %}" class="cancel">Cancel</a>
+          <button type="submit" class="save-changes">Save Changes</button>
+        </div>
+      </form>
+  </div>
 {% endblock %}

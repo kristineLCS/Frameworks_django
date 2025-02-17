@@ -17,4 +17,5 @@ urlpatterns = [
     path("folders/new/", FolderCreateView.as_view(), name="folder-create"),
     path("folders/<int:pk>/edit/", FolderUpdateView.as_view(), name="folder-edit"),
     path("folders/<int:pk>/delete/", FolderDeleteView.as_view(), name="folder-delete"),
+    path('folder/<int:folder_id>/remove/<int:book_id>/', views.remove_book_from_folder, name='remove_book'),
 ]

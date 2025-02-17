@@ -1,7 +1,7 @@
 from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib.auth import get_user_model
 from django.urls import reverse_lazy
-from .models import Post, Book, Genre, Announcement
+from .models import Post, Book, Announcement
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic.detail import SingleObjectMixin
 from django.contrib.auth.decorators import login_required, user_passes_test
@@ -125,16 +125,13 @@ class BaseCRUDView(SingleObjectMixin):
 @login_required
 def search_results(request):
     query = request.GET.get('q', '').strip()
-    genre_id = request.GET.get('genre', '')
     print(f"Search query: {query}")  # Debugging
 
     books = Book.objects.all()
 
     if query:
         books = Book.objects.filter(Q(title__icontains=query) | Q(author__icontains=query)) if query else Book.objects.none()
-    
-    if genre_id:  # Filter by genre if selected
-        books = books.filter(genres__id=genre_id)
+
 
     # Fetch folders for the logged-in user
     folders = Folder.objects.filter(user=request.user)
@@ -145,7 +142,6 @@ def search_results(request):
         'books': books, 
         'folders': folders,
         'query': query,
-        'genre_id': genre_id,
     })
 
 
@@ -202,42 +198,3 @@ class AnnouncementDeleteView(UserPassesTestMixin, DeleteView):
         print(f"Using template: {self.template_name}")  # Debugging
         return [self.template_name]
 
-# @login_required
-# def genre_books(request, genre_id):
-#     genre = get_object_or_404(Genre, id=genre_id)  # Fetch the genre
-#     books = Book.objects.filter(genres=genre)  # Get books in this genre
-
-#     return render(request, 'blog/genre_books.html', {'genre': genre, 'books': books})
-
-
-# def fetch_book_data(google_books_id):
-#     import requests
-#     from book_tracker.models import Book, Genre
-
-#     url = f"https://www.googleapis.com/books/v1/volumes/{google_books_id}"
-#     response = requests.get(url).json()
-
-#     # Check if 'volumeInfo' exists in the response
-#     volume_info = response.get("volumeInfo", {})
-
-#     book, created = Book.objects.update_or_create(
-#         google_books_id=google_books_id,
-#         defaults={
-#             "title": volume_info.get("title", "Unknown Title"),
-#             "author": ", ".join(volume_info.get("authors", [])) if "authors" in volume_info else "",
-#             "published_date": volume_info.get("publishedDate", None),
-#             "description": volume_info.get("description", ""),
-#         }
-#     )
-
-#     # Handle genres safely
-#     if "categories" in volume_info:
-#         genre_list = []
-#         for genre_name in volume_info["categories"]:
-#             genre, _ = Genre.objects.get_or_create(name=genre_name.strip())
-#             genre_list.append(genre)
-#         book.genres.set(genre_list)  # Assign all genres
-#     else:
-#         book.genres.clear()  # Remove genres if none exist
-
-#     book.save()
