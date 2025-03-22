@@ -122,7 +122,6 @@ class BaseCRUDView(SingleObjectMixin):
 
 
 # Search Bar
-@login_required
 def search_results(request):
     query = request.GET.get('q', '').strip()
     print(f"Search query: {query}")  # Debugging
