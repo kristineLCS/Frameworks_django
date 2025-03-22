@@ -12,11 +12,9 @@ from django.views.generic import (
     UpdateView,
     DeleteView
 )
-from django.http import HttpResponse
 # from users.forms import BookSearchForm
 from django.db.models import Q
 from users.models import Folder
-from users.forms import FolderForm
 from .forms import AnnouncementForm
 
 
@@ -131,9 +129,9 @@ def search_results(request):
     if query:
         books = Book.objects.filter(Q(title__icontains=query) | Q(author__icontains=query)) if query else Book.objects.none()
 
+    # Only fetch folders if the user is authenticated
+    folders = Folder.objects.filter(user=request.user) if request.user.is_authenticated else []
 
-    # Fetch folders for the logged-in user
-    folders = Folder.objects.filter(user=request.user)
     print("Search results view is being called!")
     print(f"User: {request.user} | Folders: {list(folders)}")  # Ensures folders are being retrieved
 
@@ -141,7 +139,8 @@ def search_results(request):
         'books': books, 
         'folders': folders,
         'query': query,
-    })
+})
+
 
 
 
