@@ -370,6 +370,15 @@ background-color: #6e4f30;
     background-color: #a48a70;
 }
 
+.folder-details{
+    margin-top: 50px;
+}
+
+.detail-container{
+    margin-top: 80px;
+
+}
+
 .list-style{
     list-style: none;
     display: flex;

@@ -1,16 +1,20 @@
 {% extends "blog/base.html" %}
 {% block content %}
-<h2>Folder: {{ folder.name }}</h2>
+<div class="folder-details">
+    <div class="detail-container">
+        <h2>Folder: {{ folder.name }}</h2>
 
-<h3>Books in this Folder</h3>
-<ul>
-    {% for book_folder in books_in_folder %}
-        <li>{{ book_folder.book.title }} by {{ book_folder.book.author }}</li>
-    {% empty %}
-        <li>No books in this folder yet.</li>
-    {% endfor %}
-</ul>
+        <h3>Books in this Folder</h3>
+        <ul>
+            {% for book_folder in books_in_folder %}
+                <li>{{ book_folder.book.title }} by {{ book_folder.book.author }}</li>
+            {% empty %}
+                <li>No books in this folder yet.</li>
+            {% endfor %}
+        </ul>
 
-<a href="{% url 'profile' %}">Back to Profile</a>
+        <a href="{% url 'profile' %}">Back to Profile</a>
+    </div>
+</div>
 
 {% endblock %}
