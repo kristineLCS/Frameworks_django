@@ -25,5 +25,5 @@ urlpatterns = [
     path('search/', views.search_results, name='search_results'),  # search bar
     path('posts/',views.posts, name='blog-posts'),
     path('inbox/', include('inbox.urls')),
-    path('users/', include('users.urls')),  # Include user-related URLs
+    path('users/', include('users.urls')),
 ]

@@ -34,7 +34,7 @@ def home(request):
 
 def posts(request):
     posts = Post.objects.all()  # Fetch all posts
-    return render(request, 'blog/post_list.html', {'posts': posts})  # Update template
+    return render(request, 'blog/post_list.html', {'posts': posts})
 
 
 class PostListView(ListView):
