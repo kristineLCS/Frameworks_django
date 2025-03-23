@@ -250,12 +250,18 @@ background-color: #6e4f30;
     padding-bottom: 50px;
 }
 
-.about-detail{
+.about-paragraph{
     font-weight: bold;
-    margin-top: 40px;
-    margin-bottom: 50px;
+}
+
+.about-detail{
     margin-left: 60px;
     margin-right: 100px;
+}
+
+.about-container{
+    margin-top: 40px;
+    margin-bottom: 50px;
 }
 
 /* POST PAGE */
