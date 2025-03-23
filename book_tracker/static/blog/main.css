@@ -250,6 +250,12 @@ background-color: #6e4f30;
     padding-bottom: 50px;
 }
 
+.about-detail{
+    margin-top: 50px;
+    margin-left: 30px;
+    margin-right: 30px;
+}
+
 /* POST PAGE */
 .content-section{
     display: flex;
