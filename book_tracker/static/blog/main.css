@@ -251,7 +251,7 @@ background-color: #6e4f30;
 }
 
 .about-paragraph{
-    font-weight: bold;
+    font-weight: 100;
 }
 
 .about-detail{
@@ -293,6 +293,10 @@ background-color: #6e4f30;
 }
 
 /* ANNOUNCEMENT BOARD */
+.announcement-section{
+    margin-top: 50px;
+}
+
 .announcement-container{
     margin-top: 120px;
     width: 60%;
