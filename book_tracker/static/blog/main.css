@@ -645,7 +645,7 @@ background-color: #6e4f30;
     margin-top: 50px;
     display: flex;
     justify-content: space-between;
-    flex-direction: column;
+    flex-direction: row;
     margin-left: 90px;
     margin-right: 90px;
 }
