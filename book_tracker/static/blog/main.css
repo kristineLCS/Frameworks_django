@@ -644,8 +644,8 @@ background-color: #6e4f30;
 .archive-list{
     margin-top: 50px;
     display: flex;
-    justify-content: space-evenlyx;
-    flex-direction: column;
+    justify-content: space-evenly;
+    flex-direction: row;
     margin-left: 90px;
     margin-right: 90px;
 }
