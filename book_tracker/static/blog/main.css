@@ -635,17 +635,17 @@ background-color: #6e4f30;
     width: 100%;
 }
 
-.archive-page{
+/* .archive-page{
     display: flex;
     justify-content: space-evenly;
     flex-direction: column;
-}
+} */
 
 .archive-list{
     margin-top: 50px;
     display: flex;
     justify-content: space-evenly;
-    flex-direction: row;
+    flex-direction: column;
     margin-left: 90px;
     margin-right: 90px;
 }
