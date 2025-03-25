@@ -2,21 +2,19 @@
 
 {% block content %}
     <div class="archive-page-container">
-        <div class="archive-page">
-            <h2 class="archive-title">Archived Messages</h2>
-            <div class="archive-list">
-                {% if archived_msgs %}
-                        {% for msg in archived_msgs %}
-                            <span class="dot"></span>
-                            <p class="sender-name">From <strong>{{ msg.sender }}</strong></p>
+        <h2 class="archive-title">Archived Messages</h2>
+        <div class="archive-list">
+            {% if archived_msgs %}
+                {% for msg in archived_msgs %}
+                    <span class="dot"></span>
+                    <p class="sender-name">From <strong>{{ msg.sender }}</strong></p>
 
-                            <strong><a href="{% url 'message_detail' msg.id %}">{{ msg.subject }}</a></strong>
-                            <p class="time-stamp">on {{ msg.timestamp }}</p>
-                        {% endfor %}
-                {% else %}
-                    <p>No archived messages.</p>
-                {% endif %}
-            </div>
+                    <strong><a href="{% url 'message_detail' msg.id %}">{{ msg.subject }}</a></strong>
+                    <p class="time-stamp">on {{ msg.timestamp }}</p>
+                {% endfor %}
+            {% else %}
+                <p>No archived messages.</p>
+            {% endif %}
         </div>
     </div>
 {% endblock %}

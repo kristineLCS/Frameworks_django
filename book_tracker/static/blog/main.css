@@ -631,7 +631,7 @@ background-color: #6e4f30;
     display: flex;
     justify-content: space-evenly;
     flex-direction: column;
-    margin-top: 120px;
+    margin-top: 50px;
     width: 100%;
 }
 
@@ -642,12 +642,12 @@ background-color: #6e4f30;
 } */
 
 .archive-list{
-    margin-top: 50px;
     display: flex;
-    justify-content: space-evenly;
-    flex-direction: column;
-    margin-left: 90px;
-    margin-right: 90px;
+    justify-content: space-between;
+    flex-direction: row;
+    width: 100%;
+    margin-left: 40px;
+    margin-right: 40px;
 }
 
 .archive-title{
