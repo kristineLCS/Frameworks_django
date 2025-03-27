@@ -40,7 +40,6 @@ ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'booked-and-busy.onrender.com']
 
 
 # Application definition
-
 INSTALLED_APPS = [
     'book_tracker.apps.BookTrackerConfig',
     'users.apps.UsersConfig',
